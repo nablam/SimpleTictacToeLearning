@@ -130,9 +130,6 @@ namespace TacTicToe
             {
                 PlayerPos = "Defender";
             }
-
-
-
         }
 
         public string Helpme(int argPlayerpos)
