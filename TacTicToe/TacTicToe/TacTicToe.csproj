@@ -43,8 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AiPlayer.cs" />
+    <Compile Include="BoardGame.cs" />
+    <Compile Include="GameDataTracker.cs" />
+    <Compile Include="GameSession.cs" />
+    <Compile Include="HumanPlayer.cs" />
+    <Compile Include="IPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TickTackGame.cs" />
+    <Compile Include="TictacApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
