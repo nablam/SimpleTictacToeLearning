@@ -265,7 +265,6 @@ namespace TacTicToe
             {
                 keyInfo = Console.ReadKey(true);
             }
-
             Console.WriteLine($"You pressed: {keyInfo.KeyChar}");
             ProcessEntry_resetChar(keyInfo.KeyChar);
         }
