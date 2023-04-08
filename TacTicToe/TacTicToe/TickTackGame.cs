@@ -142,10 +142,12 @@ namespace TacTicToe
         }
         void RoundLoop()
         {
+            Console.Clear();
             DrawBoardMap_andUI();
             DrawUNDERGameBoard();
             Player_Human_Roll();
             roundTurnCount++;
+            Console.Clear();
             DrawBoardMap_andUI();
             DrawUNDERGameBoard();
             Player_AI_Roll();

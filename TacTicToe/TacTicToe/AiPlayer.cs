@@ -34,7 +34,8 @@ namespace TacTicToe
             //have i seen this board with a win for my turn
 
             //if not do a randome shot
-            //   Console.WriteLine("I is layer " + _IamPlayer.ToString());
+           
+            Console.WriteLine("I is layer " + _IamPlayer.ToString());
             if (UsePause)
             {
                 Thread.Sleep(800);

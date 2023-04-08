@@ -56,7 +56,7 @@ namespace TacTicToe
 
                 if (curTurn == 0)
                 {
-                    //  Console.Clear();
+                    Console.Clear();
                     _thegameboard.DrawEmptyBoard(_sessionNumber, curTurn, _player1.MySymbol(), true);
                 }
 

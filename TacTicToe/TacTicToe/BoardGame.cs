@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TacTicToe
@@ -39,6 +40,8 @@ namespace TacTicToe
         }
         public void PlayerPlayes(char argPlayerSymbol, int iR, int iC)
         {
+            Console.Clear();
+
             if (argPlayerSymbol == 'x' || argPlayerSymbol == 'X')
             {
                 CharToDraw = 'X';
@@ -117,7 +120,12 @@ namespace TacTicToe
                 lastplayerisAttacker = true;
                 PlayerPos = "Attacker";
             }
-
+            Console.WriteLine(" " + charTTC[0, 0] + " | " + charTTC[0, 1] + " | " + charTTC[0, 2] + "    game " + arggameNumber);
+            Console.WriteLine("---+---+---");
+            Console.WriteLine(" " + charTTC[1, 0] + " | " + charTTC[1, 1] + " | " + charTTC[1, 2] + "     round " + argroundTurnCount);
+            Console.WriteLine("---+---+---");
+            Console.WriteLine(" " + charTTC[2, 0] + " | " + charTTC[2, 1] + " | " + charTTC[2, 2] + "    Player " + argCurrChar + " " + PlayerPos);
+            Console.WriteLine("");
 
 
         }
@@ -130,6 +138,12 @@ namespace TacTicToe
             {
                 PlayerPos = "Defender";
             }
+            Console.WriteLine("   |   |      game " + arggameNumber);
+            Console.WriteLine("---+---+---");
+            Console.WriteLine("   |   |       round " + argroundTurnCount);
+            Console.WriteLine("---+---+---");
+            Console.WriteLine("   |   |      Player " + argCurrChar + " " + PlayerPos);
+            Console.WriteLine("");
         }
 
         public string Helpme(int argPlayerpos)
@@ -156,13 +170,19 @@ namespace TacTicToe
 
             string outStr = "?";
             string gamestringCur = _datatracker.GetCurGameString();
+            Console.Clear();
             if (gamestringCur == "")
             {
+               
+                Console.WriteLine("EMPTY-no game started yet");
+                Thread.Sleep(1000);
                 return outStr;
             }
             List<string> possiblewins = FindMatchs(gamestringCur, templist);
             if (possiblewins == null || possiblewins.Count == 0)
             {
+                Console.WriteLine("idk bro ");
+                Thread.Sleep(1000);
                 return outStr;
             }
             Random r = new Random();
@@ -170,6 +190,8 @@ namespace TacTicToe
             string ChosenString = possiblewins[index];
             int gamestrLen = gamestringCur.Length;
             outStr = ChosenString[gamestrLen].ToString();
+            Console.WriteLine("remembered a wininning move for  " + argPlayerpos + " -> " + ChosenString + " nextmove is " + outStr);
+            Thread.Sleep(1000);
             return outStr;
         }
 
