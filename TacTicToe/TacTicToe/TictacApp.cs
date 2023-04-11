@@ -13,6 +13,7 @@ namespace TacTicToe
         GameSession _session;
         int SessionNumber = 0;
         char Choice = ' ';
+        char ChoiceTestOrGame= ' ';
         AiPlayer _aiGuy;
         AiPlayer _aiGuy_XX, _aiGuy_OO;
         HumanPlayer _humanGuy;
@@ -31,7 +32,7 @@ namespace TacTicToe
         void Do10000()
         {
             _datatracker.LoadListFromFile();
-            for (int x = 0; x < 1000; x++)
+            for (int x = 0; x < 3; x++)
             {
                 ;
                 Console.WriteLine("_ " + x);
@@ -39,21 +40,63 @@ namespace TacTicToe
                 SessionNumber++;
                 if (gb.LastWinner == 2)
                 {
-                    _session.RunSession(false, false);
+                    _session.RunSession(false, false, true);
                 }
                 else
                 if (gb.LastWinner == 1)
                 {
-                    _session.RunSession(true, false);
+                    _session.RunSession(true, false, true);
                 }
 
             }
             Console.WriteLine("thanks");
             _datatracker.SaveListToFile();
         }
-        public void RunMultiSessions(bool istraining)
+
+        public void RunTestOrGame() {
+            bool lern = false;
+            while (ChoiceTestOrGame != 'n')
+            {
+                Console.WriteLine("Run Learning  -> L ");
+                Console.WriteLine("run Play Game -> P");
+             
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                while (!DoVAlidations_L_P(keyInfo.KeyChar))
+                {
+                    Console.WriteLine("press  L  or   P    plz");
+                    keyInfo = Console.ReadKey(true);
+                }
+                ChoiceTestOrGame = keyInfo.KeyChar;
+                if (ChoiceTestOrGame == 'l')
+                {
+                    lern = true;
+                    Console.WriteLine("let s learn");
+                    Thread.Sleep(400);
+                    break;
+
+                }
+               
+                else
+                    if (ChoiceTestOrGame == 'p')
+                {
+                    lern = false;
+                    Console.WriteLine("let me show you what i learned ");
+                    Thread.Sleep(400);
+                    break;
+                }
+            }
+
+
+            RunMultiSessions(lern);
+
+
+            Console.WriteLine(".");
+
+        }
+
+         void RunMultiSessions(bool argistraining)
         {
-            if (istraining) {
+            if (argistraining) {
                 Do10000();
                 return;
             }
@@ -68,12 +111,12 @@ namespace TacTicToe
                     SessionNumber++;
                     if (gb.LastWinner == 2)
                     {
-                        _session.RunSession(false, true);
+                        _session.RunSession(false, true, argistraining);
                     }
                     else
                     if (gb.LastWinner == 1)
                     {
-                        _session.RunSession(true, true);
+                        _session.RunSession(true, true, argistraining);
                     }
                 }
                 else
@@ -83,12 +126,12 @@ namespace TacTicToe
                     SessionNumber++;
                     if (gb.LastWinner == 2)
                     {
-                        _session.RunSession(false, false);
+                        _session.RunSession(false, false, argistraining);
                     }
                     else
                     if (gb.LastWinner == 1)
                     {
-                        _session.RunSession(true, false);
+                        _session.RunSession(true, false, argistraining);
                     }
                 }
                 else
@@ -99,16 +142,18 @@ namespace TacTicToe
                 }
             }
 
-            Console.WriteLine("thanks");
             _datatracker.SaveListToFile();
+            Console.WriteLine("thanks all moves shall be remembered !");
+            Thread.Sleep(600);
+            Console.WriteLine(".");
 
         }
         void Do_you_want_to_Play_AGame()
         {
             if (SessionNumber == 0)
-                Console.WriteLine("Do_you_want_to_Play_AGame? Yes No Home");
+                Console.WriteLine("Do_you_want_to_Play_AGame? Yes No Homesafe");
             else
-                Console.WriteLine("Do_you_want_to_Play_Another_Game? Yes No Home");
+                Console.WriteLine("Do_you_want_to_Play_Another_Game? Yes No Homesafe");
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
             while (!DoVAlidations(keyInfo.KeyChar))
             {
@@ -124,6 +169,15 @@ namespace TacTicToe
                 is_YNH = true;
 
             return is_YNH;
+        }
+
+        bool DoVAlidations_L_P(char arginout_L_P)
+        {
+            bool is_LP = false;
+            if (arginout_L_P == 'l' || arginout_L_P == 'p' )
+                is_LP = true;
+
+            return is_LP;
         }
 
     }

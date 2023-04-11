@@ -130,7 +130,7 @@ namespace TacTicToe
 
         }
 
-        public void DrawEmptyBoard(int arggameNumber, int argroundTurnCount, char argCurrChar, bool argAttacker)
+        public void DrawEmptyBoard(int arggameNumber, int argroundTurnCount, char argCurrChar, bool argAttacker, bool argisTrainingOnly)
         {
             RestArrays();
             string PlayerPos = "Attacker";
@@ -138,12 +138,20 @@ namespace TacTicToe
             {
                 PlayerPos = "Defender";
             }
-            Console.WriteLine("   |   |      game " + arggameNumber);
-            Console.WriteLine("---+---+---");
-            Console.WriteLine("   |   |       round " + argroundTurnCount);
-            Console.WriteLine("---+---+---");
-            Console.WriteLine("   |   |      Player " + argCurrChar + " " + PlayerPos);
-            Console.WriteLine("");
+            if (argisTrainingOnly)
+            {
+
+            }
+            else
+            {
+                Console.WriteLine("   |   |      game " + arggameNumber);
+                Console.WriteLine("---+---+---");
+                Console.WriteLine("   |   |       round " + argroundTurnCount);
+                Console.WriteLine("---+---+---");
+                Console.WriteLine("   |   |      Player " + argCurrChar + " " + PlayerPos);
+                Console.WriteLine("");
+            }
+
         }
 
         public string Helpme(int argPlayerpos)

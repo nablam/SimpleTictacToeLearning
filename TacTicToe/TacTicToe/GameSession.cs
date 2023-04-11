@@ -36,7 +36,7 @@ namespace TacTicToe
             _thegameboard.DrawBoard(_sessionNumber, curTurn, _player1.MySymbol(), true);
             GameWon = _thegameboard.Verify_ifWin();
         }
-        void P2Play(int argpos)
+        void P2Play(int argpos, bool argUsePause)
         {
             _player2.IamPlayer(argpos);
             _player2.Play();
@@ -45,7 +45,7 @@ namespace TacTicToe
             GameWon = _thegameboard.Verify_ifWin();
         }
 
-        public void RunSession(bool player1First, bool argUsePasue)
+        public void RunSession(bool player1First, bool argUsePasue, bool argIsLearning)
         {
 
             _thegameboard.NewSession();
@@ -57,7 +57,7 @@ namespace TacTicToe
                 if (curTurn == 0)
                 {
                     Console.Clear();
-                    _thegameboard.DrawEmptyBoard(_sessionNumber, curTurn, _player1.MySymbol(), true);
+                    _thegameboard.DrawEmptyBoard(_sessionNumber, curTurn, _player1.MySymbol(), true, argIsLearning);
                 }
 
                 curTurn++;//turn 1 
@@ -72,14 +72,14 @@ namespace TacTicToe
                     }
                     else
                     {
-                        P2Play(1);
+                        P2Play(1, argUsePasue);
                     }
                 }
                 else
                 {
                     if (curTurn % 2 == 1)
                     {
-                        P2Play(0);
+                        P2Play(0, argUsePasue);
 
                     }
                     else

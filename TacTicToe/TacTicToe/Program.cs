@@ -11,7 +11,8 @@ namespace TacTicToe
         static void Main(string[] args)
         {
             TictacApp tg = new TictacApp();
-            tg.RunMultiSessions(false);
+
+            tg.RunTestOrGame();
             Console.WriteLine("Done");
         }
     }

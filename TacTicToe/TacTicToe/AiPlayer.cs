@@ -35,9 +35,9 @@ namespace TacTicToe
 
             //if not do a randome shot
            
-            Console.WriteLine("I is layer " + _IamPlayer.ToString());
             if (UsePause)
             {
+                Console.WriteLine("I is layer " + _IamPlayer.ToString());
                 Thread.Sleep(800);
             }
 
